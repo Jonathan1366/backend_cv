@@ -7,9 +7,6 @@ import (
 	"higo-iot/handlers"
 	"higo-iot/internal/usecase"
 	"higo-iot/routes"
-	
-	""
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/jackc/pgx/v5"
 	"github.com/spf13/viper"
