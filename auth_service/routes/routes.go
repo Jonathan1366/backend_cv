@@ -21,23 +21,4 @@ func SetupRoutes(app *fiber.App, sellerHandlers *handlers.SellerHandler) {
 	cctv:= auth.Group("/cctv")
 	cctv.Post("/register", sellerHandlers.RegisterSeller)
 	cctv.Post("/login", sellerHandlers.LoginSeller)
-	// cctv.Post("/otp/send", sellerHandlers.SendOTP)
-	// cctv.Post("/otp/verify", sellerHandlers.VerifyOTP) 
-	
-	// sellerPrivate := auth.Group("/seller", middleware.AuthMiddleware("seller"))
-	// sellerPrivate.Post("/logout", sellerHandlers.LogoutSeller)
-	// sellerPrivate.Put("/store/location", sellerHandlers.StoreLocSeller)
-
-	// //S3 BUCKET
-	// // seller.Post("/presignurl", Seller.GeneratePresignedUploadURL)
-	
-	// //USER
-	// user:= auth.Group("/user")
-	// user.Post("/register", userHandlers.RegisterUser)
-	// user.Post("/login", userHandlers.LoginUser)
-	// user.Post("/logout", userHandlers.LogoutUser)
-
-	// //OAUTH2
-	// google:= auth.Group("/google")
-	// google.Post("/login", googleHandlers.GoogleSignIn)
 }
