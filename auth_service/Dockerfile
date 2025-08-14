@@ -6,7 +6,6 @@ WORKDIR /app
 COPY auth_service/go.mod auth_service/go.sum ./
 RUN go mod download
 
-
 # Build aplikasi
 RUN go build -o /app/out .
 
@@ -17,11 +16,8 @@ WORKDIR /root/
 # Salin binary yang sudah dicompile dari stage builder
 COPY --from=builder /app/out .
 
-# (Opsional) Salin file lain yang mungkin dibutuhkan, contoh: .env, certs
-COPY auth_service/.env .
-
 # EXPOSE port yang akan didengarkan oleh aplikasi Go Anda (BUKAN port database)
-EXPOSE 5432
+EXPOSE 8080
 CMD ["./out"]
 
 

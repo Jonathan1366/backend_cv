@@ -61,7 +61,7 @@ func main() {
 		routes.SetupRoutes(app, sellerHandlers)
 		port := os.Getenv("PORT")
 		if port==""{
-			port="5432"
+			port="8080"
 		}
 		if err := app.Listen("0.0.0.0:" + port); err != nil {
 			log.Fatalf("Failed to start server: %v\n", err)
