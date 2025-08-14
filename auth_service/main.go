@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 	"os"
-	db_drivers "ubm-canteen/db/db_drivers"
-	"ubm-canteen/handlers"
-	"ubm-canteen/internal/usecase"
-	"ubm-canteen/routes"
-	"ubm-canteen/utils"
+	db_drivers "higo-iot/db/db_drivers"
+	"higo-iot/handlers"
+	"higo-iot/internal/usecase"
+	"higo-iot/routes"
+	
+	""
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jackc/pgx/v5"
@@ -53,12 +54,11 @@ func main() {
 			JWTSecret: jwtSecret,
 		}
 
-		userHandler:= handlers.NewUserHandlers(baseHandler)
+		// userHandler:= handlers.NewUserHandlers(baseHandler)
 		sellerHandlers:= handlers.NewSellerHandler(baseHandler)
-		googleHandler:= handlers.NewGoogleHandlers(baseHandler)
+		// googleHandler:= handlers.NewGoogleHandlers(baseHandler)
 	
-		routes.SetupRoutes(app, sellerHandlers, userHandler, googleHandler)
-
+		routes.SetupRoutes(app, sellerHandlers)
 		port := os.Getenv("PORT")
 		if port==""{
 			port="8080"

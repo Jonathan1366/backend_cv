@@ -1,4 +1,4 @@
-module ubm-canteen
+module higo-iot
 
 go 1.23.0
 
