@@ -1,5 +1,5 @@
 // // file: middleware/auth_middleware.go
-// package middleware
+package middleware
 
 // import (
 // 	"fmt"
