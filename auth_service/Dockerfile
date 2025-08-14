@@ -22,7 +22,8 @@ COPY --from=builder /app/out .
 # (Opsional) Salin file lain yang mungkin dibutuhkan, contoh: .env, certs
 COPY auth_service/.env .
 
-EXPOSE 5432 # Ganti dengan port yang Anda gunakan
+# EXPOSE port yang akan didengarkan oleh aplikasi Go Anda (BUKAN port database)
+EXPOSE 5432
 CMD ["./out"]
 
 
