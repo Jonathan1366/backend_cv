@@ -55,9 +55,9 @@ WORKDIR /root/
 COPY --from=builder /app/out .
 
 # (Opsional) Salin file lain yang mungkin dibutuhkan, contoh: .env, certs
-# COPY auth_service/.env .
+COPY auth_service/.env .
 
-EXPOSE 8080 # Ganti dengan port yang Anda gunakan
+EXPOSE 5432 # Ganti dengan port yang Anda gunakan
 CMD ["./out"]
 
 
