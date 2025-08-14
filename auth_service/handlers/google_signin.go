@@ -1,4 +1,4 @@
-// package handlers
+package handlers
 
 // import (
 // 	entity "ubm-canteen/models"
@@ -9,7 +9,7 @@
 // )
 
 // type GoogleHandler struct {
-// 	*BaseHandler
+//	// *BaseHandler
 // 	Repo *repository.UserRepo
 // }
 
