@@ -1,29 +1,29 @@
 package utils
 
-import (
-	"context"
-	"fmt"
-	"os"
+// import (
+// 	"context"
+// 	"fmt"
+// 	"os"
 
-	"github.com/redis/go-redis/v9"
-)
+// 	"github.com/redis/go-redis/v9"
+// )
 
-var RedisClient *redis.Client
+// var RedisClient *redis.Client
 
-func InitRedis() {
-	url := os.Getenv("REDIS_URL")
-	opt, err := redis.ParseURL(url)
-	if err != nil {
-		fmt.Println("Failed to parse Redis URL: ", err)
-		return
-	}
-	RedisClient = redis.NewClient(opt)
+// func InitRedis() {
+// 	url := os.Getenv("REDIS_URL")
+// 	opt, err := redis.ParseURL(url)
+// 	if err != nil {
+// 		fmt.Println("Failed to parse Redis URL: ", err)
+// 		return
+// 	}
+// 	RedisClient = redis.NewClient(opt)
 
-	_, err = RedisClient.Ping(context.Background()).Result()
-	if err != nil {
-		fmt.Println("Redis connection failed:", err)
+// 	_, err = RedisClient.Ping(context.Background()).Result()
+// 	if err != nil {
+// 		fmt.Println("Redis connection failed:", err)
 
-	} else{
-		fmt.Println("Redis connected successfully")
-	}
-}
+// 	} else{
+// 		fmt.Println("Redis connected successfully")
+// 	}
+// }

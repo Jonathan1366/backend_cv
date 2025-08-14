@@ -17,8 +17,8 @@ package utils
 //     client := usecase.GetTextractClient()
 
 //     if !strings.HasSuffix(strings.ToLower(filePath), ".pdf") && !strings.HasSuffix(strings.ToLower(filePath), ".jpg") &&
-//     !strings.HasSuffix(strings.ToLower(filePath), ".jpeg") &&
-//     !strings.HasSuffix(strings.ToLower(filePath), ".png") {
+// // !strings.HasSuffix(strings.ToLower(filePath), ".jpeg") &&
+// // !strings.HasSuffix(strings.ToLower(filePath), ".png") {
 //     return nil, fmt.Errorf("invalid file type")
 //     }
 //     //send request to textract
