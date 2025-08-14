@@ -6,8 +6,6 @@ WORKDIR /app
 COPY auth_service/go.mod auth_service/go.sum ./
 RUN go mod download
 
-# Salin sisa source code dari service Anda
-COPY auth_service/ ./
 
 # Build aplikasi
 RUN go build -o /app/out .
