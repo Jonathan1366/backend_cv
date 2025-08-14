@@ -26,7 +26,7 @@ WORKDIR /root/
 COPY --from=builder /app/out .
 
 # Expose port
-EXPOSE 6543
+EXPOSE 8080
 
 # Jalankan aplikasi
 CMD ["./out"]

@@ -3,15 +3,13 @@ package routes
 import (
 	"ubm-canteen/handlers"
 	"ubm-canteen/middleware"
-
 	"github.com/gofiber/fiber/v2"
 )
 
-func SetupRoutes(app *fiber.App, authHandler *handlers.authHandler, cameraHandler *handlers.cameraHandler, detectionHandler *handlers.detectionHandler) {
+func SetupRoutes(app *fiber.App, sellerHandlers *handlers.SellerHandler) {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"status":  "success",
-			"message": "Welcome to HIGO CV API",
+			"error":"404 not found",
 		})
 	});
 	
@@ -19,23 +17,27 @@ func SetupRoutes(app *fiber.App, authHandler *handlers.authHandler, cameraHandle
 	
 	auth:= v1.Group("/auth")
 
-	auth.Post("/register", authHandler.RegisterUser) // Endpoint untuk mendaftarkan user baru
-	auth.Post("/login", authHandler.LoginUser)       // Endpoint untuk login dan mendapatkan JWT
+	//SELLER
+	cctv:= auth.Group("/cctv")
+	cctv.Post("/register", sellerHandlers.RegisterSeller)
+	cctv.Post("/login", sellerHandlers.LoginSeller)
+	// cctv.Post("/otp/send", sellerHandlers.SendOTP)
+	// cctv.Post("/otp/verify", sellerHandlers.VerifyOTP) 
+	
+	// sellerPrivate := auth.Group("/seller", middleware.AuthMiddleware("seller"))
+	// sellerPrivate.Post("/logout", sellerHandlers.LogoutSeller)
+	// sellerPrivate.Put("/store/location", sellerHandlers.StoreLocSeller)
 
-	apiProtected := v1.Group("", middleware.AuthMiddleware()) // Middleware untuk memeriksa JWT
+	// //S3 BUCKET
+	// // seller.Post("/presignurl", Seller.GeneratePresignedUploadURL)
+	
+	// //USER
+	// user:= auth.Group("/user")
+	// user.Post("/register", userHandlers.RegisterUser)
+	// user.Post("/login", userHandlers.LoginUser)
+	// user.Post("/logout", userHandlers.LogoutUser)
 
-	cameras := apiProtected.Group("/cameras")
-	cameras.Post("/", cameraHandler.CreateCamera)      // Menambah CCTV baru
-	cameras.Get("/", cameraHandler.GetAllCameras)       // Mendapatkan daftar semua CCTV
-
-	detections := apiProtected.Group("/detections")
-	detections.Post("/", detectionHandler.CreateDetection) // Menerima & menyimpan data deteksi baru dari service AI
-	detections.Get("/", detectionHandler.GetDetections)     // Mengambil riwayat data deteksi untuk ditampilkan di grafik/tabel
-
-	// --- Rute untuk Real-time WebSocket ---
-	// Rute ini juga dilindungi middleware, tapi di-handle secara khusus
-	ws := v1.Group("/ws")
-	ws.Get("/live", websocket.New(detectionHandler.LiveDetections, websocket.Config{
-
-	}))
+	// //OAUTH2
+	// google:= auth.Group("/google")
+	// google.Post("/login", googleHandlers.GoogleSignIn)
 }
